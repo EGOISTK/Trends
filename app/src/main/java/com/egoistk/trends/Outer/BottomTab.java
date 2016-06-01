@@ -3,7 +3,7 @@ package com.egoistk.trends.Outer;
 import com.egoistk.trends.R;
 
 
-public enum MainTab {
+public enum BottomTab {
 
 	HOME(0, R.string.home, R.drawable.tab_home_icon,
 	        HomeFragment.class),
@@ -19,7 +19,7 @@ public enum MainTab {
 	private int resIcon;
 	private Class<?> clz;
 
-	private MainTab(int idx, int resName, int resIcon, Class<?> clz) {
+	BottomTab(int idx, int resName, int resIcon, Class<?> clz) {
 		this.idx = idx;
 		this.resName = resName;
 		this.resIcon = resIcon;

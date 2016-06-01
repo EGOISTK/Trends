@@ -11,7 +11,7 @@ import android.view.View;
 import android.widget.TabHost;
 import android.widget.TextView;
 
-import com.egoistk.trends.Outer.MainTab;
+import com.egoistk.trends.Outer.BottomTab;
 import com.egoistk.trends.base.OnTabReselectListener;
 import com.egoistk.trends.widget.MyFragmentTabHost;
 import com.readystatesoftware.systembartint.SystemBarTintManager;
@@ -20,7 +20,7 @@ import com.readystatesoftware.systembartint.SystemBarTintManager;
 public class MainActivity extends AppCompatActivity implements
         TabHost.OnTabChangeListener, View.OnTouchListener {
 
-    public MyFragmentTabHost mTabHost;
+    private MyFragmentTabHost mTabHost;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,20 +49,20 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     private void initTabs() {
-        MainTab[] tabs = MainTab.values();
+        BottomTab[] tabs = BottomTab.values();
         final int size = tabs.length;
         for (int i = 0; i < size; i++) {
-            MainTab mainTab = tabs[i];
-            TabHost.TabSpec tab = mTabHost.newTabSpec(getString(mainTab.getResName()));
+            BottomTab bottomTab = tabs[i];
+            TabHost.TabSpec tab = mTabHost.newTabSpec(getString(bottomTab.getResName()));
             View indicator = LayoutInflater.from(getApplicationContext())
                     .inflate(R.layout.tab_indicator, null);
             TextView title = (TextView) indicator.findViewById(R.id.tab_title);
             Drawable drawable = this.getResources().getDrawable(
-                    mainTab.getResIcon());
+                    bottomTab.getResIcon());
             title.setCompoundDrawablesWithIntrinsicBounds(null, drawable, null,
                     null);
 
-            title.setText(getString(mainTab.getResName()));
+            title.setText(getString(bottomTab.getResName()));
             tab.setIndicator(indicator);
             tab.setContent(new TabHost.TabContentFactory() {
 
@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity implements
                     return new View(MainActivity.this);
                 }
             });
-            mTabHost.addTab(tab, mainTab.getClz(), null);
+            mTabHost.addTab(tab, bottomTab.getClz(), null);
 
             mTabHost.getTabWidget().getChildAt(i).setOnTouchListener(this);
         }
