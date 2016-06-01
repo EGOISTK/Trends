@@ -7,14 +7,14 @@
 
     <!-- 导航标题栏 -->
 
-    <com.egoistk.trends.widget.PagerSlidingTabStrip
+    <com.egoistk.trends.widget.SlidingPagerTabStrip
         android:id="@+id/pager_tabstrip"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/sliding_tab_strip_background"
+        android:elevation="4dp"
         app:allowWidthFull="true"
-        app:slidingBlock="@drawable/image_sliding_block" >
-    </com.egoistk.trends.widget.PagerSlidingTabStrip>
+        app:slidingBlock="@drawable/image_sliding_block" />
 
     <android.support.v4.view.ViewPager
         android:id="@+id/pager"
@@ -23,11 +23,5 @@
         android:layout_below="@id/pager_tabstrip">
     </android.support.v4.view.ViewPager>
 
-<!--     <RelativeLayout
-        android:id="@+id/error_layout"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:visibility="gone" >
-    </RelativeLayout> -->
 
 </RelativeLayout>

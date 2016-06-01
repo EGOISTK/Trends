@@ -5,7 +5,7 @@
         <attr name="border_color" format="color" />
     </declare-styleable>
     
-    <declare-styleable name="PagerSlidingTabStrip">
+    <declare-styleable name="SlidingPagerTabStrip">
         <attr name="slidingBlock" format="reference|color"/>
         <attr name="allowWidthFull" format="boolean"/>
         <attr name="disableViewPager" format="boolean"/>

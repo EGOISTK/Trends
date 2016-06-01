@@ -13,7 +13,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.egoistk.trends.R;
-import com.egoistk.trends.widget.PagerSlidingTabStrip;
+import com.egoistk.trends.widget.SlidingPagerTabStrip;
 
 import java.util.ArrayList;
 
@@ -21,12 +21,12 @@ import java.util.ArrayList;
 public class ViewPageFragmentAdapter extends FragmentStatePagerAdapter {
 
 	private final Context mContext;
-	protected PagerSlidingTabStrip mPagerStrip;
+	protected SlidingPagerTabStrip mPagerStrip;
 	private final ViewPager mViewPager;
 	private final ArrayList<ViewPageInfo> mTabs = new ArrayList<ViewPageInfo>();
 
 	public ViewPageFragmentAdapter(FragmentManager fm,
-			PagerSlidingTabStrip pageStrip, ViewPager pager) {
+								   SlidingPagerTabStrip pageStrip, ViewPager pager) {
 		super(fm);
 		mContext = pager.getContext();
 		mPagerStrip = pageStrip;

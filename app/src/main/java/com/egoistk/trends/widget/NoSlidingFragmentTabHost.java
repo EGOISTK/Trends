@@ -13,13 +13,13 @@ import com.egoistk.trends.base.BaseFragmentTabHost;
  * 
  */
 
-public class MyFragmentTabHost extends BaseFragmentTabHost {
+public class NoSlidingFragmentTabHost extends BaseFragmentTabHost {
 
 	private String mCurrentTag;
 
 	private String mNoTabChangedTag;
 
-	public MyFragmentTabHost(Context context, AttributeSet attrs) {
+	public NoSlidingFragmentTabHost(Context context, AttributeSet attrs) {
 		super(context, attrs);
 	}
 

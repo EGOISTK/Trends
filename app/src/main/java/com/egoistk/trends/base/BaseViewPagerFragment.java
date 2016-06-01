@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 
 import com.egoistk.trends.R;
 import com.egoistk.trends.adapter.ViewPageFragmentAdapter;
-import com.egoistk.trends.widget.PagerSlidingTabStrip;
+import com.egoistk.trends.widget.SlidingPagerTabStrip;
 
 /**
  * 带有导航条的基类
@@ -19,7 +19,7 @@ import com.egoistk.trends.widget.PagerSlidingTabStrip;
  */
 public abstract class BaseViewPagerFragment extends BaseFragment {
 
-	protected PagerSlidingTabStrip mTabStrip;
+	protected SlidingPagerTabStrip mTabStrip;
 	protected ViewPager mViewPager;
 	protected ViewPageFragmentAdapter mTabsAdapter;
 
@@ -33,7 +33,7 @@ public abstract class BaseViewPagerFragment extends BaseFragment {
 
 	@Override
 	public void onViewCreated(View view, Bundle savedInstanceState) {
-		mTabStrip = (PagerSlidingTabStrip) view
+		mTabStrip = (SlidingPagerTabStrip) view
 				.findViewById(R.id.pager_tabstrip);
 
 		mViewPager = (ViewPager) view.findViewById(R.id.pager);

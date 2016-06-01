@@ -5,22 +5,24 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TabHost;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.egoistk.trends.Outer.BottomTab;
 import com.egoistk.trends.base.OnTabReselectListener;
-import com.egoistk.trends.widget.MyFragmentTabHost;
+import com.egoistk.trends.widget.NoSlidingFragmentTabHost;
 import com.readystatesoftware.systembartint.SystemBarTintManager;
 
 
-public class MainActivity extends AppCompatActivity implements
-        TabHost.OnTabChangeListener, View.OnTouchListener {
+public class MainActivity extends AppCompatActivity implements TabHost.OnTabChangeListener, View.OnTouchListener {
 
-    private MyFragmentTabHost mTabHost;
+    private Toolbar mToolbar;
+    private NoSlidingFragmentTabHost mTabHost;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,11 +38,20 @@ public class MainActivity extends AppCompatActivity implements
 
     private void initView() {
         // TODO Auto-generated method stub
-        mTabHost = (MyFragmentTabHost) findViewById(R.id.tabhost);
+        mToolbar = (Toolbar) findViewById(R.id.toolbar);
+        mToolbar.setTitle(R.string.app_name);
+        mToolbar.setTitleTextColor(getResources().getColor(R.color.outerTabTitlePrimary));
+        setSupportActionBar(mToolbar);
+        mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(MainActivity.this, "Hello Trends!", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        mTabHost = (NoSlidingFragmentTabHost) findViewById(R.id.tabhost);
         mTabHost.setup(this, getSupportFragmentManager(), R.id.realtabcontent);
-        if (android.os.Build.VERSION.SDK_INT > 10) {
-            mTabHost.getTabWidget().setShowDividers(0);
-        }
+        mTabHost.getTabWidget().setShowDividers(0);
 
         initTabs();
 
@@ -54,25 +65,22 @@ public class MainActivity extends AppCompatActivity implements
         for (int i = 0; i < size; i++) {
             BottomTab bottomTab = tabs[i];
             TabHost.TabSpec tab = mTabHost.newTabSpec(getString(bottomTab.getResName()));
-            View indicator = LayoutInflater.from(getApplicationContext())
-                    .inflate(R.layout.tab_indicator, null);
+            View indicator = LayoutInflater.from(getApplicationContext()).inflate(R.layout.tab_indicator, null);
             TextView title = (TextView) indicator.findViewById(R.id.tab_title);
-            Drawable drawable = this.getResources().getDrawable(
-                    bottomTab.getResIcon());
-            title.setCompoundDrawablesWithIntrinsicBounds(null, drawable, null,
-                    null);
 
+            Drawable drawable = this.getResources().getDrawable(bottomTab.getResIcon());
+            title.setCompoundDrawablesWithIntrinsicBounds(null, drawable, null, null);
             title.setText(getString(bottomTab.getResName()));
+
             tab.setIndicator(indicator);
             tab.setContent(new TabHost.TabContentFactory() {
-
                 @Override
                 public View createTabContent(String tag) {
                     return new View(MainActivity.this);
                 }
             });
-            mTabHost.addTab(tab, bottomTab.getClz(), null);
 
+            mTabHost.addTab(tab, bottomTab.getClz(), null);
             mTabHost.getTabWidget().getChildAt(i).setOnTouchListener(this);
         }
     }
@@ -82,13 +90,9 @@ public class MainActivity extends AppCompatActivity implements
         final int size = mTabHost.getTabWidget().getTabCount();
         for (int i = 0; i < size; i++) {
             View v = mTabHost.getTabWidget().getChildAt(i);
-            if (i == mTabHost.getCurrentTab()) {
-                v.setSelected(true);
-            } else {
-                v.setSelected(false);
-            }
+            v.setSelected(i == mTabHost.getCurrentTab());
         }
-        supportInvalidateOptionsMenu();
+        //supportInvalidateOptionsMenu();
     }
 
     @Override

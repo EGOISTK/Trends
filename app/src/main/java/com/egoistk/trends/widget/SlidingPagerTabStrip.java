@@ -40,7 +40,7 @@ import java.util.List;
  * @version 1.3.0
  * @author Peng fei Pan
  */
-public class PagerSlidingTabStrip extends HorizontalScrollView implements
+public class SlidingPagerTabStrip extends HorizontalScrollView implements
 		View.OnClickListener {
 	private int currentPosition; // 当前位置
 	private int lastOffset;
@@ -58,24 +58,24 @@ public class PagerSlidingTabStrip extends HorizontalScrollView implements
 	private OnPagerChangeLis listener;
 	private List<View> tabViews;
 
-	public PagerSlidingTabStrip(Context context) {
+	public SlidingPagerTabStrip(Context context) {
 		this(context, null);
 	}
 
-	public PagerSlidingTabStrip(Context context, AttributeSet attrs) {
+	public SlidingPagerTabStrip(Context context, AttributeSet attrs) {
 		super(context, attrs);
 		setHorizontalScrollBarEnabled(false); // 隐藏横向滑动提示条
 
 		if (attrs != null) {
 			TypedArray attrsTypedArray = context.obtainStyledAttributes(attrs,
-					R.styleable.PagerSlidingTabStrip);
+					R.styleable.SlidingPagerTabStrip);
 			if (attrsTypedArray != null) {
 				allowWidthFull = attrsTypedArray.getBoolean(
-						R.styleable.PagerSlidingTabStrip_allowWidthFull, false);
+						R.styleable.SlidingPagerTabStrip_allowWidthFull, false);
 				slidingBlockDrawable = attrsTypedArray
-						.getDrawable(R.styleable.PagerSlidingTabStrip_slidingBlock);
+						.getDrawable(R.styleable.SlidingPagerTabStrip_slidingBlock);
 				disableViewPager = attrsTypedArray.getBoolean(
-						R.styleable.PagerSlidingTabStrip_disableViewPager,
+						R.styleable.SlidingPagerTabStrip_disableViewPager,
 						false);
 				attrsTypedArray.recycle();
 			}

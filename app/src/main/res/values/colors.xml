@@ -5,6 +5,6 @@
     <color name="colorAccent">#FF4081</color>
     <color name="outerTabTitlePrimary">#ffffff</color>
     <color name="outerTabTitleSelected">#FF4081</color>
-    <color name="innerTabTitlePrimary">#ffffff</color>
-    <color name="innerTabTitleSelected">#b0bec5</color>
+    <color name="outerTab">#ccd0d0</color>
+
 </resources>
