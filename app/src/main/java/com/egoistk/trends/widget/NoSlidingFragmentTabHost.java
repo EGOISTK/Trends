@@ -5,13 +5,6 @@ import android.util.AttributeSet;
 
 import com.egoistk.trends.base.BaseFragmentTabHost;
 
-/**
- * tabhost
- * 
- * @author FireAnt（http://my.oschina.net/LittleDY）
- * @version 创建时间：2014年9月28日 下午2:27:51
- * 
- */
 
 public class NoSlidingFragmentTabHost extends BaseFragmentTabHost {
 

@@ -99,12 +99,10 @@ public class MainActivity extends AppCompatActivity implements TabHost.OnTabChan
     public boolean onTouch(View v, MotionEvent event) {
         super.onTouchEvent(event);
         boolean consumed = false;
-        // use getTabHost().getCurrentTabView to decide if the current tab is
-        // touched again
+        // use getTabHost().getCurrentTabView to decide if the current tab is touched again
         if (event.getAction() == MotionEvent.ACTION_DOWN
                 && v.equals(mTabHost.getCurrentTabView())) {
-            // use getTabHost().getCurrentView() to get a handle to the view
-            // which is displayed in the tab - and to get this views context
+            // use getTabHost().getCurrentView() to get a handle to the view which is displayed in the tab - and to get this views context
             Fragment currentFragment = getCurrentFragment();
             if (currentFragment != null
                     && currentFragment instanceof OnTabReselectListener) {
@@ -120,4 +118,5 @@ public class MainActivity extends AppCompatActivity implements TabHost.OnTabChan
         return getSupportFragmentManager().findFragmentByTag(
                 mTabHost.getCurrentTabTag());
     }
+
 }

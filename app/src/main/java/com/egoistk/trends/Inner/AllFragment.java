@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.egoistk.trends.R;
+import com.egoistk.trends.ReturnableThread;
 import com.egoistk.trends.adapter.RecyclerAdapter;
 import com.egoistk.trends.base.BaseFragment;
 
@@ -30,10 +31,12 @@ public class AllFragment extends BaseFragment {
 		super.onCreateView(inflater, container, savedInstanceState);
 		View view = inflater.inflate(R.layout.all_fragment, null);
 		initView(view);
+		getData();
 		return view;
 	}
 
 	public void initView(View view) {
+
 		mRecyclerView = (RecyclerView) view.findViewById(R.id.recycler_container);
 		mLayoutManager = new LinearLayoutManager(this.getContext());
 		mRecyclerView.setLayoutManager(mLayoutManager);
@@ -52,12 +55,24 @@ public class AllFragment extends BaseFragment {
 						@Override
 						public void onAnimationCancel(Animator animation) {
 							super.onAnimationCancel(animation);
-							view.animate().translationZ(1f).setDuration(500).start();
+							if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+								view.animate().translationZ(1f).setDuration(500).start();
+							}
 						}
 					}).start();
 				}
 			}
 		});
+	}
+
+	private void getData() {
+		ReturnableThread returnableThread = new ReturnableThread("content", null, null);
+		returnableThread.start();
+		try {
+			returnableThread.join();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 	}
 	
 }
