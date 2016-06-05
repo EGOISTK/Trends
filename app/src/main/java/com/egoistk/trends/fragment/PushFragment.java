@@ -7,9 +7,10 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.egoistk.trends.AppContext;
 import com.egoistk.trends.R;
 import com.egoistk.trends.base.BaseFragment;
-import com.egoistk.trends.fragment.AllFragment;
+import com.egoistk.trends.network.PushDataThread;
 
 
 public class PushFragment extends BaseFragment {
@@ -31,7 +32,8 @@ public class PushFragment extends BaseFragment {
 		btnPush.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View view) {
-				getFragmentManager().beginTransaction().replace(R.id.realtabcontent, new AllFragment()).commit();
+				new PushDataThread(((AppContext)getActivity().getApplicationContext()).getUsername(), etPush.getText().toString()).start();
+				etPush.setText(null);
 			}
 		});
 	}

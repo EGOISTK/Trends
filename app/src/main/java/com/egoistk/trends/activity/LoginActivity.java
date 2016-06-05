@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.egoistk.trends.AppContext;
 import com.egoistk.trends.R;
 import com.egoistk.trends.network.LoginThread;
 import com.readystatesoftware.systembartint.SystemBarTintManager;
@@ -65,9 +66,10 @@ public class LoginActivity extends AppCompatActivity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                ((AppContext)getApplicationContext()).setUsername(etUsername.getText().toString());
                 msg = login(etUsername.getText().toString(), etPassword.getText().toString());
                 if (msg.equals("ok")) {
-                    startActivity(new Intent(LoginActivity.this, MainActivity.class),  ActivityOptions.makeCustomAnimation(LoginActivity.this, R.anim.push_left_in, R.anim.push_left_out).toBundle());
+                    startActivity(new Intent(LoginActivity.this, MainActivity.class), ActivityOptions.makeCustomAnimation(LoginActivity.this, R.anim.push_left_in, R.anim.push_left_out).toBundle());
                     finish();
                 } else {
                     Toast.makeText(LoginActivity.this, msg, Toast.LENGTH_SHORT).show();

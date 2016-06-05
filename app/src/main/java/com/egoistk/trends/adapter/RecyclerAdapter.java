@@ -54,9 +54,14 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        String username = mData[position].split(" ")[0];
-        ((TextView)holder.itemView.findViewById(R.id.tv_content_in_cardView)).setText(mData[position].substring(username.length() + 1) + "\n");
-        ((TextView)holder.itemView.findViewById(R.id.tv_username_in_cardView)).setText(username);
+        if (mData[position] != null) {
+            String username = mData[position].split(" ")[0];
+            ((TextView) holder.itemView.findViewById(R.id.tv_content_in_cardView)).setText(mData[position].substring(username.length() + 1) + "\n");
+            ((TextView) holder.itemView.findViewById(R.id.tv_username_in_cardView)).setText(username);
+        } else {
+            ((TextView) holder.itemView.findViewById(R.id.tv_content_in_cardView)).setText(null);
+            ((TextView) holder.itemView.findViewById(R.id.tv_username_in_cardView)).setText(null);
+        }
     }
 
     @Override

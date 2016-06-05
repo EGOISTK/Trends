@@ -10,6 +10,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.egoistk.trends.R;
 import com.egoistk.trends.adapter.RecyclerAdapter;
@@ -29,6 +30,12 @@ public class AllFragment extends BaseFragment {
 		View view = inflater.inflate(R.layout.fragment_all, null);
 		getData();
 		initView(view);
+		getActivity().findViewById(R.id.toolbar).setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View view) {
+				freshData();
+			}
+		});
 		return view;
 	}
 
@@ -45,9 +52,10 @@ public class AllFragment extends BaseFragment {
 			@Override
 			public void onItemClick(final View view, int position) {
 				System.out.println(position + " is clicked!");
-				DetailFragment detailFragment = new DetailFragment();
-				detailFragment.setData(mData[position]);
-				getFragmentManager().beginTransaction().addToBackStack(null).replace(R.id.base_fragment, detailFragment).commit();
+				Toast.makeText(getActivity(), "详情页面暂未完成", Toast.LENGTH_SHORT).show();
+//				DetailFragment detailFragment = new DetailFragment();
+//				detailFragment.setData(mData[position]);
+//				getFragmentManager().beginTransaction().addToBackStack(null).replace(R.id.base_fragment, detailFragment).commit();
 				if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
 					view.animate().translationZ(15f).setDuration(300).setListener(new AnimatorListenerAdapter() {
 						@Override
@@ -73,5 +81,31 @@ public class AllFragment extends BaseFragment {
 			e.printStackTrace();
 		}
 	}
-	
+
+	private void freshData() {
+		getData();
+		mRecyclerAdapter = new RecyclerAdapter(mData);
+		mRecyclerView.setAdapter(mRecyclerAdapter);
+		mRecyclerAdapter.setOnItemClickListener(new RecyclerAdapter.OnItemClickListener() {
+			@Override
+			public void onItemClick(final View view, int position) {
+				System.out.println(position + " is clicked!");
+				Toast.makeText(getActivity(), "详情页面暂未完成", Toast.LENGTH_SHORT).show();
+//				DetailFragment detailFragment = new DetailFragment();
+//				detailFragment.setData(mData[position]);
+//				getFragmentManager().beginTransaction().addToBackStack(null).replace(R.id.base_fragment, detailFragment).commit();
+				if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+					view.animate().translationZ(15f).setDuration(300).setListener(new AnimatorListenerAdapter() {
+						@Override
+						public void onAnimationCancel(Animator animation) {
+							super.onAnimationCancel(animation);
+							if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+								view.animate().translationZ(1f).setDuration(500).start();
+							}
+						}
+					}).start();
+				}
+			}
+		});
+	}
 }

@@ -8,7 +8,7 @@
     android:gravity="center"
     tools:context=".fragment.DetailFragment">
 
-    <!-- TODO: Update blank fragment layout -->
+    <!-- TODO: Update blank fragment_me layout -->
     <TextView
         android:id="@+id/tv_detail"
         android:layout_width="wrap_content"
