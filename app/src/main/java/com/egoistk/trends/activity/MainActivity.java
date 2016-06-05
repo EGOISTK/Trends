@@ -15,7 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.egoistk.trends.R;
-import com.egoistk.trends.outer.BottomTab;
+import com.egoistk.trends.adapter.BottomTab;
 import com.egoistk.trends.widget.NoSlidingFragmentTabHost;
 import com.egoistk.trends.widget.OnTabReselectListener;
 import com.readystatesoftware.systembartint.SystemBarTintManager;

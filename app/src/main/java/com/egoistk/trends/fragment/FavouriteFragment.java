@@ -1,4 +1,4 @@
-package com.egoistk.trends.outer;
+package com.egoistk.trends.fragment;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -9,19 +9,19 @@ import android.widget.TextView;
 import com.egoistk.trends.R;
 import com.egoistk.trends.base.BaseFragment;
 
-public class MeFragment extends BaseFragment {
+public class FavouriteFragment extends BaseFragment {
 
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		super.onCreateView(inflater, container, savedInstanceState);
-		View view = inflater.inflate(R.layout.fragment, null);
+		View view = inflater.inflate(R.layout.child_fragment, null);
 		initView(view);
 		return view;
 	}
 
 	public void initView(View view) {
-		TextView tv = (TextView) view.findViewById(R.id.tv_fragment_name);
-		tv.setText("MeFragment");
+		TextView tv = (TextView) view.findViewById(R.id.tv_childfragment_name);
+		tv.setText("Child_Fragment2");
 	}
 
 	@Override

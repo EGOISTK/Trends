@@ -13,9 +13,7 @@ import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * Created by EGOIST.K on 16/6/4.
- */
+
 public class PushDataThread extends Returnable {
 
     private Map<String, String> params = new HashMap<String, String>();

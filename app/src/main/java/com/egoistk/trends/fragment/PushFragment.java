@@ -1,4 +1,4 @@
-package com.egoistk.trends.outer;
+package com.egoistk.trends.fragment;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -9,7 +9,7 @@ import android.widget.EditText;
 
 import com.egoistk.trends.R;
 import com.egoistk.trends.base.BaseFragment;
-import com.egoistk.trends.inner.AllFragment;
+import com.egoistk.trends.fragment.AllFragment;
 
 
 public class PushFragment extends BaseFragment {

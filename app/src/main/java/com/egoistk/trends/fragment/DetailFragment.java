@@ -1,4 +1,4 @@
-package com.egoistk.trends.inner;
+package com.egoistk.trends.fragment;
 
 
 import android.os.Bundle;

@@ -2,6 +2,7 @@ package com.egoistk.trends;
 
 import android.app.Application;
 
+
 public class AppContext extends Application {
 
 	private static AppContext instance;

@@ -1,6 +1,9 @@
-package com.egoistk.trends.outer;
+package com.egoistk.trends.adapter;
 
 import com.egoistk.trends.R;
+import com.egoistk.trends.fragment.HomeFragment;
+import com.egoistk.trends.fragment.MeFragment;
+import com.egoistk.trends.fragment.PushFragment;
 
 
 public enum BottomTab {

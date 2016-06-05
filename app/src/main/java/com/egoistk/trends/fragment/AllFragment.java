@@ -1,4 +1,4 @@
-package com.egoistk.trends.inner;
+package com.egoistk.trends.fragment;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -16,16 +16,12 @@ import com.egoistk.trends.adapter.RecyclerAdapter;
 import com.egoistk.trends.base.BaseFragment;
 import com.egoistk.trends.network.GetDataThread;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class AllFragment extends BaseFragment {
 
 	private RecyclerView mRecyclerView;
 	private RecyclerAdapter mRecyclerAdapter;
 	private RecyclerView.LayoutManager mLayoutManager;
-	private List<String> mData = new ArrayList<String>();
-	private String[] data = new String[100];
+	private String[] mData = new String[100];
 
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -43,10 +39,6 @@ public class AllFragment extends BaseFragment {
 		mRecyclerView.setLayoutManager(mLayoutManager);
 		mRecyclerView.setHasFixedSize(true);
 		mRecyclerView.setItemAnimator(new DefaultItemAnimator());
-		for (int i = 0; i < 100; i++) {
-			//mData.add("Recycler" + i);
-			mData.add(data[i]);
-		}
 		mRecyclerAdapter = new RecyclerAdapter(mData);
 		mRecyclerView.setAdapter(mRecyclerAdapter);
 		mRecyclerAdapter.setOnItemClickListener(new RecyclerAdapter.OnItemClickListener() {
@@ -54,8 +46,8 @@ public class AllFragment extends BaseFragment {
 			public void onItemClick(final View view, int position) {
 				System.out.println(position + " is clicked!");
 				DetailFragment detailFragment = new DetailFragment();
-				detailFragment.setData(data[position]);
-				getFragmentManager().beginTransaction().addToBackStack(null).replace(R.id.activity_main, detailFragment).commit();
+				detailFragment.setData(mData[position]);
+				getFragmentManager().beginTransaction().addToBackStack(null).replace(R.id.base_fragment, detailFragment).commit();
 				if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
 					view.animate().translationZ(15f).setDuration(300).setListener(new AnimatorListenerAdapter() {
 						@Override
@@ -74,7 +66,7 @@ public class AllFragment extends BaseFragment {
 	private void getData() {
 		GetDataThread getDataThread = new GetDataThread();
 		getDataThread.start();
-		data = getDataThread.getData();
+		mData = getDataThread.getResults();
 		try {
 			getDataThread.join();
 		} catch (InterruptedException e) {

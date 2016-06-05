@@ -8,9 +8,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-/**
- * Created by EGOIST.K on 16/6/4.
- */
+
 public class GetDataThread extends Returnable {
 
     private String[] results = new String[100];
@@ -38,7 +36,8 @@ public class GetDataThread extends Returnable {
         }
     }
 
-    public String[] getData() {
+    @Override
+    public String[] getResults() {
         return results;
     }
 }

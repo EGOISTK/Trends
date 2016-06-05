@@ -1,11 +1,11 @@
-package com.egoistk.trends.outer;
+package com.egoistk.trends.fragment;
 
 import android.support.v4.app.Fragment;
 import android.view.View;
 
-import com.egoistk.trends.inner.AllFragment;
-import com.egoistk.trends.inner.FavouriteFragment;
-import com.egoistk.trends.inner.MineFragment;
+import com.egoistk.trends.fragment.AllFragment;
+import com.egoistk.trends.fragment.FavouriteFragment;
+import com.egoistk.trends.fragment.MineFragment;
 import com.egoistk.trends.adapter.ViewPageFragmentAdapter;
 import com.egoistk.trends.base.BaseViewPagerFragment;
 import com.egoistk.trends.widget.OnTabReselectListener;

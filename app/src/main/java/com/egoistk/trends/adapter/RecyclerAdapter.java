@@ -5,19 +5,16 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.egoistk.trends.R;
 
-import java.util.List;
-
 
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    private List<String> mData;
+    private String[] mData;
 
-    public RecyclerAdapter(List<String> data) {
+    public RecyclerAdapter(String[] data) {
         mData = data;
     }
 
@@ -57,12 +54,13 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        ((TextView)holder.itemView.findViewById(R.id.tv_in_cardview)).setText(mData.get(position));
-        ((ImageView)holder.itemView.findViewById(R.id.iv_in_cardview)).setImageResource(R.mipmap.ic_launcher);
+        String username = mData[position].split(" ")[0];
+        ((TextView)holder.itemView.findViewById(R.id.tv_content_in_cardView)).setText(mData[position].substring(username.length() + 1) + "\n");
+        ((TextView)holder.itemView.findViewById(R.id.tv_username_in_cardView)).setText(username);
     }
 
     @Override
     public int getItemCount() {
-        return mData.size();
+        return mData.length;
     }
 }
