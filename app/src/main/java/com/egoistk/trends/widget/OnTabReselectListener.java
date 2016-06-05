@@ -1,4 +1,4 @@
-package com.egoistk.trends.base;
+package com.egoistk.trends.widget;
 
 /**
  * 当tabHost再次被点击时

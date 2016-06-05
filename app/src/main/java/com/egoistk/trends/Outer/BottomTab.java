@@ -1,4 +1,4 @@
-package com.egoistk.trends.Outer;
+package com.egoistk.trends.outer;
 
 import com.egoistk.trends.R;
 
@@ -9,7 +9,7 @@ public enum BottomTab {
 	        HomeFragment.class),
 
 	ADD(1, R.string.add, R.drawable.tab_add_icon,
-	        AddFragment.class),
+	        PushFragment.class),
 
 	ME(3, R.string.me, R.drawable.tab_person_icon,
 	        MeFragment.class);

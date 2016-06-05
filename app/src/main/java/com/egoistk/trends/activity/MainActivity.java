@@ -1,7 +1,8 @@
-package com.egoistk.trends;
+package com.egoistk.trends.activity;
 
 
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
@@ -13,9 +14,10 @@ import android.widget.TabHost;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.egoistk.trends.Outer.BottomTab;
-import com.egoistk.trends.base.OnTabReselectListener;
+import com.egoistk.trends.R;
+import com.egoistk.trends.outer.BottomTab;
 import com.egoistk.trends.widget.NoSlidingFragmentTabHost;
+import com.egoistk.trends.widget.OnTabReselectListener;
 import com.readystatesoftware.systembartint.SystemBarTintManager;
 
 
@@ -29,15 +31,16 @@ public class MainActivity extends AppCompatActivity implements TabHost.OnTabChan
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        SystemBarTintManager systemBarTintManager = new SystemBarTintManager(this);
-        systemBarTintManager.setStatusBarTintEnabled(true);
-        systemBarTintManager.setStatusBarTintDrawable(getResources().getDrawable(R.color.colorPrimaryDark));
-
         initView();
     }
 
     private void initView() {
-        // TODO Auto-generated method stub
+        if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.KITKAT_WATCH) {
+            SystemBarTintManager systemBarTintManager = new SystemBarTintManager(this);
+            systemBarTintManager.setStatusBarTintEnabled(true);
+            systemBarTintManager.setStatusBarTintDrawable(getResources().getDrawable(R.color.colorPrimaryDark));
+        }
+
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         mToolbar.setTitle(R.string.app_name);
         mToolbar.setTitleTextColor(getResources().getColor(R.color.outerTabTitlePrimary));
@@ -92,17 +95,14 @@ public class MainActivity extends AppCompatActivity implements TabHost.OnTabChan
             View v = mTabHost.getTabWidget().getChildAt(i);
             v.setSelected(i == mTabHost.getCurrentTab());
         }
-        //supportInvalidateOptionsMenu();
     }
 
     @Override
     public boolean onTouch(View v, MotionEvent event) {
         super.onTouchEvent(event);
         boolean consumed = false;
-        // use getTabHost().getCurrentTabView to decide if the current tab is touched again
         if (event.getAction() == MotionEvent.ACTION_DOWN
                 && v.equals(mTabHost.getCurrentTabView())) {
-            // use getTabHost().getCurrentView() to get a handle to the view which is displayed in the tab - and to get this views context
             Fragment currentFragment = getCurrentFragment();
             if (currentFragment != null
                     && currentFragment instanceof OnTabReselectListener) {

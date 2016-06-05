@@ -1,4 +1,4 @@
-package com.egoistk.trends.Inner;
+package com.egoistk.trends.inner;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -12,9 +12,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.egoistk.trends.R;
-import com.egoistk.trends.ReturnableThread;
 import com.egoistk.trends.adapter.RecyclerAdapter;
 import com.egoistk.trends.base.BaseFragment;
+import com.egoistk.trends.network.GetDataThread;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,13 +25,14 @@ public class AllFragment extends BaseFragment {
 	private RecyclerAdapter mRecyclerAdapter;
 	private RecyclerView.LayoutManager mLayoutManager;
 	private List<String> mData = new ArrayList<String>();
+	private String[] data = new String[100];
 
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		super.onCreateView(inflater, container, savedInstanceState);
-		View view = inflater.inflate(R.layout.all_fragment, null);
-		initView(view);
+		View view = inflater.inflate(R.layout.fragment_all, null);
 		getData();
+		initView(view);
 		return view;
 	}
 
@@ -43,13 +44,18 @@ public class AllFragment extends BaseFragment {
 		mRecyclerView.setHasFixedSize(true);
 		mRecyclerView.setItemAnimator(new DefaultItemAnimator());
 		for (int i = 0; i < 100; i++) {
-			mData.add("Recycler" + i);
+			//mData.add("Recycler" + i);
+			mData.add(data[i]);
 		}
 		mRecyclerAdapter = new RecyclerAdapter(mData);
 		mRecyclerView.setAdapter(mRecyclerAdapter);
 		mRecyclerAdapter.setOnItemClickListener(new RecyclerAdapter.OnItemClickListener() {
 			@Override
 			public void onItemClick(final View view, int position) {
+				System.out.println(position + " is clicked!");
+				DetailFragment detailFragment = new DetailFragment();
+				detailFragment.setData(data[position]);
+				getFragmentManager().beginTransaction().addToBackStack(null).replace(R.id.activity_main, detailFragment).commit();
 				if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
 					view.animate().translationZ(15f).setDuration(300).setListener(new AnimatorListenerAdapter() {
 						@Override
@@ -66,10 +72,11 @@ public class AllFragment extends BaseFragment {
 	}
 
 	private void getData() {
-		ReturnableThread returnableThread = new ReturnableThread("content", null, null);
-		returnableThread.start();
+		GetDataThread getDataThread = new GetDataThread();
+		getDataThread.start();
+		data = getDataThread.getData();
 		try {
-			returnableThread.join();
+			getDataThread.join();
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}

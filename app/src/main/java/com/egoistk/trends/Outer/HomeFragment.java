@@ -1,14 +1,14 @@
-package com.egoistk.trends.Outer;
+package com.egoistk.trends.outer;
 
 import android.support.v4.app.Fragment;
 import android.view.View;
 
-import com.egoistk.trends.Inner.AllFragment;
-import com.egoistk.trends.Inner.FavouriteFragment;
-import com.egoistk.trends.Inner.MineFragment;
+import com.egoistk.trends.inner.AllFragment;
+import com.egoistk.trends.inner.FavouriteFragment;
+import com.egoistk.trends.inner.MineFragment;
 import com.egoistk.trends.adapter.ViewPageFragmentAdapter;
 import com.egoistk.trends.base.BaseViewPagerFragment;
-import com.egoistk.trends.base.OnTabReselectListener;
+import com.egoistk.trends.widget.OnTabReselectListener;
 
 public class HomeFragment extends BaseViewPagerFragment implements
 		OnTabReselectListener {

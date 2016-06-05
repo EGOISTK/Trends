@@ -1,4 +1,4 @@
-package com.egoistk.trends.Outer;
+package com.egoistk.trends.outer;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

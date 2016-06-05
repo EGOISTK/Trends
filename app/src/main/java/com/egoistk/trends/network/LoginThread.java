@@ -1,17 +1,19 @@
-package com.egoistk.trends;
+package com.egoistk.trends.network;
+
+import com.egoistk.trends.base.Returnable;
 
 import java.net.MalformedURLException;
 import java.util.HashMap;
 import java.util.Map;
 
 
-public class ReturnableThread extends Thread {
+public class LoginThread extends Returnable {
 
     private Map<String, String> params = new HashMap<String, String>();
     private String mType, post_result = null;
     private String mUsername, mPassword;
 
-    public ReturnableThread(String type, String username, String password) {
+    public LoginThread(String type, String username, String password) {
         mType = type;
         mUsername = username;
         mPassword = password;
@@ -28,7 +30,8 @@ public class ReturnableThread extends Thread {
         }
     }
 
-    String getResult() {
+    @Override
+    public String getResult() {
         return post_result;
     }
 }

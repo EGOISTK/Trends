@@ -2,9 +2,13 @@
 <resources>
     <color name="colorPrimary">#2196f3</color>
     <color name="colorPrimaryDark">#1976d2</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorAccent">#2196f3</color>
+    <color name="white">#ffffff</color>
+    <color name="transparent">#00000000</color>
     <color name="outerTabTitlePrimary">#ffffff</color>
     <color name="outerTabTitleSelected">#FF4081</color>
     <color name="outerTab">#ccd0d0</color>
+
+    <color name="black_overlay">#66000000</color>
 
 </resources>
