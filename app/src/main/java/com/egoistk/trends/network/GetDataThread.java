@@ -26,7 +26,6 @@ public class GetDataThread extends Returnable {
             String line;
             while ((line = br.readLine()) != null) {
                 results[i++] = line;
-//                System.out.println(line);
             }
             br.close();
             isr.close();

@@ -66,6 +66,10 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     @Override
     public int getItemCount() {
-        return mData.length;
+        int i = 0;
+        while (mData[i] != null) {
+            i++;
+        }
+        return i;
     }
 }

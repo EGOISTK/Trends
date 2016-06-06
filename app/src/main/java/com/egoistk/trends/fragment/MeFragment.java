@@ -7,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.TextView;
 
 import com.egoistk.trends.AppContext;
 import com.egoistk.trends.R;
@@ -25,11 +24,10 @@ public class MeFragment extends BaseFragment {
 	}
 
 	public void initView(View view) {
-		((TextView) view.findViewById(R.id.tv_fragment_name)).setText("MeFragment");
 		((Button) view.findViewById(R.id.btn_logout)).setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View view) {
-				startActivity(new Intent(getActivity(), LoginActivity.class), ActivityOptions.makeCustomAnimation(getActivity(), R.anim.push_right_in, R.anim.push_rightout).toBundle());
+				startActivity(new Intent(getActivity(), LoginActivity.class), ActivityOptions.makeCustomAnimation(getActivity(), R.anim.push_right_in, R.anim.push_right_out).toBundle());
 				getActivity().finish();
 				((AppContext)getActivity().getApplicationContext()).setUsername(null);
 			}
